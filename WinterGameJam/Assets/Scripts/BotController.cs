@@ -43,7 +43,7 @@ public class BotController : MonoBehaviour
 
         float rot_modifier = cross.y; // 1 iff perpendicular
         float target_angle = transform.rotation.eulerAngles.y - rot_modifier * (angle);
-        float new_y = Mathf.LerpAngle(transform.rotation.eulerAngles.y, target_angle, 0.1f/turn_rate);
+        float new_y = Mathf.LerpAngle(transform.rotation.eulerAngles.y, target_angle, 0.001f*speed*turn_rate);
 
         //Quaternion target_rot = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rot_modifier*(angle - 1), 0);
         
