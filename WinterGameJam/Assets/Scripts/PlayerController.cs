@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
    // private CapsuleCollider col;
     //private float dist_to_ground;
     private float rotate;
+    private float disableTimer = 0f;
    // private bool jump;
     //private float forward;
 
@@ -83,7 +84,16 @@ public class PlayerController : MonoBehaviour
         rb.MoveRotation(Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0));
         rb.angularVelocity = Vector3.zero;
         //rb.MovePosition(transform.position + transform.forward * speed);
-        rb.velocity = transform.forward * speed * 20 + new Vector3(0, rb.velocity.y, 0);
+
+        if(disableTimer > 0)
+        {
+            disableTimer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            rb.velocity = transform.forward * speed * 20 + new Vector3(0, rb.velocity.y, 0);
+        }
+        // rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
 
     }
 
@@ -114,5 +124,11 @@ public class PlayerController : MonoBehaviour
         {
             fuelAmount = fuelCapacity;
         }
+    }
+
+    public void Disable(float force, float duration)
+    {
+        disableTimer = duration;
+        rb.AddRelativeForce(force * -Vector3.forward, ForceMode.Acceleration);
     }
 }
