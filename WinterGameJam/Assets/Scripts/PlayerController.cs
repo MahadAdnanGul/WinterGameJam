@@ -34,14 +34,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector3(rb.velocity.x, jump_height, rb.velocity.z);
         }
-    }
-
-    private void FixedUpdate()
-    {
         rb.MoveRotation(Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0));
-        rb.angularVelocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
         //rb.MovePosition(transform.position + transform.forward * speed);
-        rb.velocity = transform.forward * speed * 20 + new Vector3(0, rb.velocity.y, 0);
-
+        rb.velocity = (transform.forward * speed) + new Vector3(0, rb.velocity.y, 0);
     }
+
 }
