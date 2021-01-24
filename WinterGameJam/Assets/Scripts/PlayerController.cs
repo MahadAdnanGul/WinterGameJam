@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float RocketPowerRate = 4;
     [SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private float replenishAmount = 2;
+    [SerializeField] private Button attackButton;
 
     public float fuelCapacity = 100f;
     public float fuelAmount = 100f;
@@ -111,6 +113,15 @@ public class PlayerController : MonoBehaviour
                 ReplenishFuel(replenishAmount * 15);
                 Destroy(other.gameObject);
             }
+            else if (other.gameObject.CompareTag("Attack"))
+            {
+                if(attackButton.interactable==false)
+                {
+                    attackButton.interactable = true;
+                    Destroy(other.gameObject);
+                }
+              
+            }
         }
     }
 
@@ -131,4 +142,5 @@ public class PlayerController : MonoBehaviour
         disableTimer = duration;
         rb.AddRelativeForce(force * -Vector3.forward, ForceMode.Acceleration);
     }
+
 }
