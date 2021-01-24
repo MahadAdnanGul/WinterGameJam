@@ -5505,6 +5505,7 @@ MonoBehaviour:
   RocketPowerRate: 4
   FuelDepletionRate: 30
   replenishAmount: 2
+  attackButton: {fileID: 0}
   fuelCapacity: 100
   fuelAmount: 100
 --- !u!54 &493235693
@@ -20585,13 +20586,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1833936548}
-  m_LocalRotation: {x: 0.29287237, y: 0, z: 0, w: 0.95615155}
-  m_LocalPosition: {x: 0, y: 4.8, z: -2.75}
+  m_LocalRotation: {x: 0.27337164, y: 0, z: 0, w: 0.9619085}
+  m_LocalPosition: {x: 0, y: 4.9, z: -3.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 493235697}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 34.06, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 31.73, y: 0, z: 0}
 --- !u!1001 &1835309693
 PrefabInstance:
   m_ObjectHideFlags: 0

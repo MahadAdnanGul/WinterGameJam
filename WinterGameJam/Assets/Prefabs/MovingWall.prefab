@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockForce: 750
-  knockDuration: 0.2
+  knockDuration: 0.3
 --- !u!1 &7355948601057465025
 GameObject:
   m_ObjectHideFlags: 0
