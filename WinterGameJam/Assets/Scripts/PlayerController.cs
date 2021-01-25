@@ -20,21 +20,26 @@ public class PlayerController : MonoBehaviour
     public float fuelAmount = 100f;
 
     private Rigidbody rb;
+   // private CapsuleCollider col;
+    //private float dist_to_ground;
     private float rotate;
+    private float disableTimer = 0f;
+   // private bool jump;
+    //private float forward;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+       // col = GetComponent<CapsuleCollider>();
+       // dist_to_ground = col.bounds.extents.y + 0.1f;
     }
 
     // Update is called once per frame
     void Update()
     {
         rotate = Input.GetAxis("Horizontal");
-        // forward = Input.GetAxis("Vertical"); // Not currently using this
-        rb.MoveRotation(Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0));
-        rb.velocity = (transform.forward * speed) + new Vector3(0, rb.velocity.y, 0);
+       // forward = Input.GetAxis("Vertical"); // Not currently using this
 
         //Rocket Implementation
         if (Input.GetAxis("Jump") > 0 && fuelAmount > 0)
@@ -61,9 +66,39 @@ public class PlayerController : MonoBehaviour
             //Debug.Log(fuelAmount);
         }
         //Rocket Implementation End
+        
 
+
+        //JumpStart (Replaced by Rocket)
+
+        /*jump = Input.GetButtonDown("Jump") && Physics.Raycast(transform.position, -Vector3.up, dist_to_ground);
+        if (jump)
+        {
+            rb.velocity = new Vector3(rb.velocity.x, jump_height, rb.velocity.z);
+        }*/
+
+        //JumpEnd (Replaced by Rocket)
 
     }
+
+    private void FixedUpdate()
+    {
+        rb.MoveRotation(Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0));
+        rb.angularVelocity = Vector3.zero;
+        //rb.MovePosition(transform.position + transform.forward * speed);
+
+        if(disableTimer > 0)
+        {
+            disableTimer -= Time.fixedDeltaTime;
+        }
+        else
+        {
+            rb.velocity = transform.forward * speed * 20 + new Vector3(0, rb.velocity.y, 0);
+        }
+        // rb.AddForce(transform.forward * speed * Time.deltaTime, ForceMode.VelocityChange);
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(fuelAmount < fuelCapacity)
@@ -102,6 +137,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Disable(float force, float duration)
+    {
+        disableTimer = duration;
+        rb.AddRelativeForce(force * -Vector3.forward, ForceMode.Acceleration);
+    }
 
-    
 }
