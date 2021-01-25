@@ -9,8 +9,16 @@ public class CollectibleFuel : MonoBehaviour
         PlayerController controller = other.gameObject.GetComponent<PlayerController>();
         if(controller != null)
         {
-            controller.fuelAmount += controller.fuelCapacity > controller.fuelAmount ? refillAmount : 0f;
+            if(controller.fuelAmount<controller.fuelCapacity)
+            {
+                controller.fuelAmount += refillAmount;
+                if(controller.fuelAmount>controller.fuelCapacity)
+                {
+                    controller.fuelAmount = controller.fuelCapacity;
+                }
+                Destroy(gameObject);
+            }
         }
-        Destroy(gameObject);
+        
     }
 }
