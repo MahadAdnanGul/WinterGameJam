@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 2994396892409816962}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: x2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -466,7 +466,7 @@ GameObject:
   - component: {fileID: 2994396892668720963}
   m_Layer: 0
   m_Name: Trigger (3)
-  m_TagString: Untagged
+  m_TagString: x10
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -524,7 +524,7 @@ GameObject:
   - component: {fileID: 2994396892869067725}
   m_Layer: 0
   m_Name: Trigger (2)
-  m_TagString: Untagged
+  m_TagString: x8
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -614,7 +614,7 @@ GameObject:
   - component: {fileID: 2994396892978853305}
   m_Layer: 0
   m_Name: Trigger (1)
-  m_TagString: Untagged
+  m_TagString: x6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -672,7 +672,7 @@ GameObject:
   - component: {fileID: 2994396893162126739}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: x4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -763,9 +763,10 @@ GameObject:
   - component: {fileID: 8961041333505096073}
   - component: {fileID: 8961041333505096072}
   - component: {fileID: 8961041333505096079}
+  - component: {fileID: 2122911531784453773}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: x1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -810,6 +811,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LevelCompleteArea: {fileID: 8961041333025948579}
+--- !u!114 &2122911531784453773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8961041333505096074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6411c1b2db4b2ff4780d414237410494, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiplier: 1
 --- !u!1001 &2994396891069509684
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2274,6 +2288,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform (x2)
       objectReference: {fileID: 0}
+    - target: {fileID: 861410801651915564, guid: 851257821536eb641bccf578c8296dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 861410801651915568, guid: 851257821536eb641bccf578c8296dc6,
         type: 3}
       propertyPath: m_RootOrder
@@ -2521,6 +2540,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platform (x6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 861410801651915564, guid: 851257821536eb641bccf578c8296dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 861410801651915568, guid: 851257821536eb641bccf578c8296dc6,
         type: 3}
@@ -2848,6 +2872,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Platform (x8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 861410801651915564, guid: 851257821536eb641bccf578c8296dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 861410801651915568, guid: 851257821536eb641bccf578c8296dc6,
         type: 3}
@@ -3350,6 +3379,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform (x4)
       objectReference: {fileID: 0}
+    - target: {fileID: 861410801651915564, guid: 851257821536eb641bccf578c8296dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 861410801651915568, guid: 851257821536eb641bccf578c8296dc6,
         type: 3}
       propertyPath: m_RootOrder
@@ -3509,6 +3543,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Platform (x10)
       objectReference: {fileID: 0}
+    - target: {fileID: 861410801651915564, guid: 851257821536eb641bccf578c8296dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 861410801651915568, guid: 851257821536eb641bccf578c8296dc6,
         type: 3}
       propertyPath: m_RootOrder
@@ -3667,6 +3706,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PlatformWin
+      objectReference: {fileID: 0}
+    - target: {fileID: 861410801651915564, guid: 851257821536eb641bccf578c8296dc6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 861410801651915568, guid: 851257821536eb641bccf578c8296dc6,
         type: 3}

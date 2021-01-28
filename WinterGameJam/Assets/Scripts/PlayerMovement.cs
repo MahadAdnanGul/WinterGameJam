@@ -16,8 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private Button attackButton;
 
-    public int multiplier = 1;
-    public float Score = 1000;
+    
 
     public float fuelCapacity = 100f;
     public float fuelAmount = 100f;
@@ -32,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
       
     }
 

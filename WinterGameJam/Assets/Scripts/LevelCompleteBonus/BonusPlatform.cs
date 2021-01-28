@@ -13,6 +13,8 @@ public class BonusPlatform : MonoBehaviour
         if (controller != null)
         {
             controller.multiplier = multiplier;
+            controller.lastTouchedBonus = gameObject;
+            controller.isComplete = true;
         }
 
     }

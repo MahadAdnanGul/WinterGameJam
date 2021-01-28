@@ -16,13 +16,16 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private Button attackButton;
 
+    public bool isComplete = false;
+    public bool done = false;
     public int multiplier = 1;
     public float Score = 1000;
+    public GameObject lastTouchedBonus;
 
     //public float fuelCapacity = 100f;
     //public float fuelAmount = 100f;
 
-    private Rigidbody rb;
+   
     private PlayerMovement movement;
     private float rotate;
     //private bool disabled = false;
@@ -32,7 +35,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        isComplete = false;
+        
         movement = GetComponent<PlayerMovement>();
     }
 
@@ -46,7 +50,11 @@ public class PlayerController : MonoBehaviour
         }
         rotate = Input.GetAxis("Horizontal");
         Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
-        movement.Move(quat);
+        if(!done)
+        {
+            movement.Move(quat);
+        }
+        
 
         //rotate = Input.GetAxis("Horizontal");
 
@@ -103,6 +111,17 @@ public class PlayerController : MonoBehaviour
         //}
 
 
+    }
+
+    public void OnDeath()
+    {
+        if(isComplete)
+        {
+            gameObject.transform.position = lastTouchedBonus.transform.position;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2f, gameObject.transform.position.z);
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            done = true;
+        }
     }
 
 
