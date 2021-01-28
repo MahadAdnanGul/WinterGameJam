@@ -7,11 +7,11 @@ public class KnockBackWall : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        PlayerController controller = other.gameObject.GetComponent<PlayerController>();
-        if(controller != null)
+        PlayerMovement player = other.gameObject.GetComponent<PlayerMovement>();
+        if(player != null)
         {
             // rb.AddRelativeForce(knockForce * -Vector3.forward);
-            controller.Disable(knockForce, knockDuration);
+            player.Disable(knockForce, knockDuration);
         }
     }
 }
