@@ -6,7 +6,7 @@ public class CollectibleFuel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        PlayerController controller = other.gameObject.GetComponent<PlayerController>();
+        PlayerMovement controller = other.gameObject.GetComponent<PlayerMovement>();
         if(controller != null)
         {
             if(controller.fuelAmount<controller.fuelCapacity)

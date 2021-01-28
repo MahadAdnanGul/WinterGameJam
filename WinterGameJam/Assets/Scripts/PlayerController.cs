@@ -7,79 +7,101 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private float turn_rate = 1;
-    [SerializeField] private float speed = 1;
-    [SerializeField] private float currentRocketPower = 1;
-    [SerializeField] private float defaultRocketPower = 1;
-    [SerializeField] private float maxRocketPower = 3;
-    [SerializeField] private float RocketPowerRate = 4;
-    [SerializeField] private float FuelDepletionRate = 30;
+    //[SerializeField] private float speed = 1;
+    //[SerializeField] private float accel = 1;
+    //[SerializeField] private float currentRocketPower = 1;
+    //[SerializeField] private float defaultRocketPower = 1;
+    //[SerializeField] private float maxRocketPower = 3;
+    //[SerializeField] private float RocketPowerRate = 4;
+    //[SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private Button attackButton;
 
     public int multiplier = 1;
     public float Score = 1000;
 
-    public float fuelCapacity = 100f;
-    public float fuelAmount = 100f;
+    //public float fuelCapacity = 100f;
+    //public float fuelAmount = 100f;
 
     private Rigidbody rb;
+    private PlayerMovement movement;
     private float rotate;
-    private float disableTimer = 0f;
+    //private bool disabled = false;
+    //private float disableTimer = 0f;
 
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-      
+        movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetAxis("Jump") > 0)
+        {
+            movement.Rocket();
+        }
         rotate = Input.GetAxis("Horizontal");
-       
+        Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
+        movement.Move(quat);
 
-        //Rocket Implementation
-        if (Input.GetAxis("Jump") > 0 && fuelAmount > 0)
-        {
-            rb.velocity = new Vector3(rb.velocity.x, currentRocketPower, rb.velocity.z);
-            fuelAmount -= FuelDepletionRate * Time.deltaTime;
-            if(currentRocketPower <= maxRocketPower)
-            {
-                currentRocketPower += RocketPowerRate * Time.deltaTime;
-                if(currentRocketPower > maxRocketPower)
-                {
-                    currentRocketPower = maxRocketPower;
-                }
-            }
-           // Debug.Log(fuelAmount);
-        }
-        else
-        {
-            currentRocketPower = defaultRocketPower;
-        }
-        if(fuelAmount<0)
-        {
-            fuelAmount = 0;
-            //Debug.Log(fuelAmount);
-        }
-        //Rocket Implementation End
+        //rotate = Input.GetAxis("Horizontal");
 
 
+        ////Rocket Implementation
+        //if (Input.GetAxis("Jump") > 0 && fuelAmount > 0)
+        //{
+        //    rb.velocity = new Vector3(rb.velocity.x, currentRocketPower, rb.velocity.z);
+        //    fuelAmount -= FuelDepletionRate * Time.deltaTime;
+        //    if(currentRocketPower <= maxRocketPower)
+        //    {
+        //        currentRocketPower += RocketPowerRate * Time.deltaTime;
+        //        if(currentRocketPower > maxRocketPower)
+        //        {
+        //            currentRocketPower = maxRocketPower;
+        //        }
+        //    }
+        //   // Debug.Log(fuelAmount);
+        //}
+        //else
+        //{
+        //    currentRocketPower = defaultRocketPower;
+        //}
+        //if(fuelAmount<0)
+        //{
+        //    fuelAmount = 0;
+        //    //Debug.Log(fuelAmount);
+        //}
+        ////Rocket Implementation End
 
-        rb.MoveRotation(Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0));
-        rb.angularVelocity = Vector3.zero;
-        
 
-        if (disableTimer > 0)
-        {
-            disableTimer -= Time.deltaTime;
-        }
-        else
-        {
-            rb.velocity = transform.forward * speed * 20 + new Vector3(0, rb.velocity.y, 0);
-        }
-       
+
+        //rb.MoveRotation(Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0));
+        //rb.angularVelocity = Vector3.zero;
+
+        //if (disabled)
+        //{
+        //    disableTimer -= Time.deltaTime;
+        //    if (disableTimer < 0)
+        //    {
+        //        rb.velocity = Vector3.zero;
+        //        disabled = false;
+        //    }
+        //}
+        //else
+        //{
+        //    float new_speed = (new Vector3(rb.velocity.x, 0, rb.velocity.z)).magnitude + accel/10;
+        //    if (new_speed > speed)
+        //    {
+        //        new_speed = speed;
+        //    }
+        //    rb.velocity = transform.forward * new_speed + new Vector3(0, rb.velocity.y, 0);
+
+        //}
+
 
     }
 
@@ -100,10 +122,6 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    public void Disable(float force, float duration)
-    {
-        disableTimer = duration;
-        rb.AddRelativeForce(force * -Vector3.forward, ForceMode.Acceleration);
-    }
+    
 
 }

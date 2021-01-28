@@ -81,7 +81,7 @@ public class PlayerAttack : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if(rb!=null)
         {
-            rb.AddForce(transform.forward * force, ForceMode.Impulse);
+            //rb.AddForce(transform.forward * force, ForceMode.Impulse);
         }
         
     }

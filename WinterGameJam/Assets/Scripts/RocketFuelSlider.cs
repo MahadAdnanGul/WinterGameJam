@@ -5,12 +5,12 @@ using UnityEngine.UI;
 
 public class RocketFuelSlider : MonoBehaviour
 {
-    PlayerController player;
+    PlayerMovement player;
     Slider fuelSlider;
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
         fuelSlider = gameObject.GetComponent<Slider>();
         fuelSlider.minValue = 0;
         fuelSlider.maxValue = player.fuelCapacity;
