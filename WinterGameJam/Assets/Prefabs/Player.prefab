@@ -114,17 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn_rate: 2
-  speed: 0.5
-  currentRocketPower: 1
-  defaultRocketPower: 1
-  maxRocketPower: 5
-  RocketPowerRate: 8
-  FuelDepletionRate: 30
   attackButton: {fileID: 0}
   multiplier: 1
   Score: 1000
-  fuelCapacity: 100
-  fuelAmount: 100
 --- !u!136 &608621437490635531
 CapsuleCollider:
   m_ObjectHideFlags: 0
