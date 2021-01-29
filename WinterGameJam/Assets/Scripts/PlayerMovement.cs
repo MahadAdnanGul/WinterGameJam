@@ -16,8 +16,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private Button attackButton;
 
-    public int multiplier = 1;
-    public float Score = 1000;
+    
 
     public float fuelCapacity = 100f;
     public float fuelAmount = 100f;
@@ -32,6 +31,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
       
     }
 
@@ -67,6 +67,35 @@ public class PlayerMovement : MonoBehaviour
         if (fuelAmount > 0)
         {
             rb.velocity = new Vector3(rb.velocity.x, currentRocketPower, rb.velocity.z);
+            //rb.AddForce(new Vector3(0, currentRocketPower, 0), ForceMode.Acceleration);
+            fuelAmount -= FuelDepletionRate * Time.deltaTime;
+            if (currentRocketPower <= maxRocketPower)
+            {
+                currentRocketPower += RocketPowerRate * Time.deltaTime;
+                if (currentRocketPower > maxRocketPower)
+                {
+                    currentRocketPower = maxRocketPower;
+                }
+            }
+            // Debug.Log(fuelAmount);
+        }
+        else
+        {
+            currentRocketPower = defaultRocketPower;
+        }
+        if (fuelAmount < 0)
+        {
+            fuelAmount = 0;
+            //Debug.Log(fuelAmount);
+        }
+    }
+
+    public void forceRocket()
+    {
+        if (fuelAmount > 0)
+        {
+            //rb.velocity = new Vector3(rb.velocity.x, currentRocketPower, rb.velocity.z);
+            rb.AddForce(new Vector3(0, currentRocketPower, 0), ForceMode.Acceleration);
             fuelAmount -= FuelDepletionRate * Time.deltaTime;
             if (currentRocketPower <= maxRocketPower)
             {

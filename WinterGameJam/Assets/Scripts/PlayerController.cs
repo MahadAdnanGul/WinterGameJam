@@ -16,13 +16,20 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private Button attackButton;
 
+    [SerializeField] private Joystick joystick;
+
+    public bool isComplete = false;
+    public bool done = false;
     public int multiplier = 1;
     public float Score = 1000;
+    public GameObject lastTouchedBonus;
 
     //public float fuelCapacity = 100f;
     //public float fuelAmount = 100f;
+    float buttonReset = 0.2f;
+    int buttonCount = 0;
 
-    private Rigidbody rb;
+   
     private PlayerMovement movement;
     private float rotate;
     //private bool disabled = false;
@@ -32,21 +39,39 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        isComplete = false;
+        
         movement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetAxis("Jump") > 0)
+       if (Input.GetMouseButtonDown(0))
+        {
+            buttonReset = 0.3f;
+            buttonCount += 1;
+        }
+        else if (buttonReset > 0 && buttonCount == 2 && Input.GetMouseButton(0))
         {
             movement.Rocket();
         }
-        rotate = Input.GetAxis("Horizontal");
+
+        else if(buttonReset>0)
+        {
+            buttonReset -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            buttonCount = 0;
+        }
+        rotate = joystick.Horizontal;
         Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
-        movement.Move(quat);
+        if(!done)
+        {
+            movement.Move(quat);
+        }
+        
 
         //rotate = Input.GetAxis("Horizontal");
 
@@ -103,6 +128,17 @@ public class PlayerController : MonoBehaviour
         //}
 
 
+    }
+
+    public void OnDeath()
+    {
+        if(isComplete)
+        {
+            gameObject.transform.position = lastTouchedBonus.transform.position;
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2f, gameObject.transform.position.z);
+            gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+            done = true;
+        }
     }
 
 
