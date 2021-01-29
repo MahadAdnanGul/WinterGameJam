@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     //[SerializeField] private float FuelDepletionRate = 30;
     [SerializeField] private Button attackButton;
 
+    [SerializeField] private Joystick joystick;
+
     public bool isComplete = false;
     public bool done = false;
     public int multiplier = 1;
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
     //public float fuelCapacity = 100f;
     //public float fuelAmount = 100f;
+    float buttonReset = 0.2f;
+    int buttonCount = 0;
 
    
     private PlayerMovement movement;
@@ -43,12 +47,25 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetAxis("Jump") > 0)
+       if (Input.GetMouseButtonDown(0))
+        {
+            buttonReset = 0.3f;
+            buttonCount += 1;
+        }
+        else if (buttonReset > 0 && buttonCount == 2 && Input.GetMouseButton(0))
         {
             movement.Rocket();
         }
-        rotate = Input.GetAxis("Horizontal");
+
+        else if(buttonReset>0)
+        {
+            buttonReset -= 1 * Time.deltaTime;
+        }
+        else
+        {
+            buttonCount = 0;
+        }
+        rotate = joystick.Horizontal;
         Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
         if(!done)
         {
