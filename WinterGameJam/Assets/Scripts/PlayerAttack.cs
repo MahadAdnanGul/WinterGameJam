@@ -71,6 +71,7 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         attack = true;
+        Debug.Log("Atatck");
        // forward = true;
        // reverse = false;
         attackButton.interactable = false;
@@ -81,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
         Rigidbody rb = other.GetComponent<Rigidbody>();
         if(rb!=null)
         {
-            //rb.AddForce(transform.forward * force, ForceMode.Impulse);
+            rb.AddForce(transform.forward * force, ForceMode.Impulse);
         }
         
     }

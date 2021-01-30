@@ -12,9 +12,17 @@ public class BonusPlatform : MonoBehaviour
         PlayerController controller = other.gameObject.GetComponent<PlayerController>();
         if (controller != null)
         {
-            controller.multiplier = multiplier;
-            controller.lastTouchedBonus = gameObject;
-            controller.isComplete = true;
+            if(controller.multiplier<=multiplier)
+            {
+                controller.multiplier = multiplier;
+                controller.lastTouchedBonus = gameObject;
+                controller.isComplete = true;
+            }
+            if(multiplier==10)
+            {
+                controller.OnDeath();
+            }
+            
         }
 
     }
