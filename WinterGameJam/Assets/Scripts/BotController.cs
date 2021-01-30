@@ -6,21 +6,9 @@ public class BotController : MonoBehaviour
 {
     [Header("AI Settings")]
     [SerializeField] private Waypoint waypoint;
+    [SerializeField] private float cheat_probability = 0;
 
     [Header("Character Settings")]
-    //[SerializeField] private float turn_rate = 1;
-    //[SerializeField] private float speed = 1;
-    //[SerializeField] private float accel = 1;
-    //[SerializeField] private float currentRocketPower = 1;
-    //[SerializeField] private float defaultRocketPower = 1;
-    //[SerializeField] private float maxRocketPower = 3;
-    //[SerializeField] private float RocketPowerRate = 4;
-    //[SerializeField] private float FuelDepletionRate = 30;
-    //[SerializeField] private float replenishAmount = 2;
-
-    public float fuelCapacity = 100f;
-    public float fuelAmount = 100f;
-
     private Rigidbody rb;
     private Quaternion old_rot;
     private Quaternion target_rot;
@@ -75,8 +63,15 @@ public class BotController : MonoBehaviour
 
         if (waypoint != null && other.gameObject.GetInstanceID() == waypoint.gameObject.GetInstanceID())
         {
-            Debug.Log("Reached Waypoint" + other.gameObject.name);
-            waypoint = waypoint.next;
+            if(waypoint.shortcut != null && Random.Range(0.0f, 1.0f) < cheat_probability)
+            {
+                waypoint = waypoint.shortcut;
+            }
+            else
+            {
+                waypoint = waypoint.next;
+            }
+            
         }
 
     }
