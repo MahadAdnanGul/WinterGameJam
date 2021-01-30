@@ -8,9 +8,11 @@ public class Waypoint : MonoBehaviour
     bool selected = false;
 
     [SerializeField] public Waypoint next = null;
+    [SerializeField] public Waypoint shortcut = null;
 
-    //[SerializeField] GameObject prefab = null;
-    
+    [SerializeField] Waypoint prefab = null;
+
+
     void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
@@ -27,8 +29,10 @@ public class Waypoint : MonoBehaviour
     public void NewWayPoint()
     {
         print("NOT DONE YET");
-        //GameObject wp = Instantiate(prefab, transform.position + transform.forward, Quaternion.identity, transform.parent);
-        //next = wp;
+        Waypoint wp = Instantiate(prefab, transform.position + transform.forward, Quaternion.identity, transform.parent);
+        wp.name = gameObject.name;
+        next = wp;
+        Selection.SetActiveObjectWithContext(wp, this);
     }
 
 }
@@ -41,7 +45,7 @@ public class SomeScriptEditor : Editor
         DrawDefaultInspector();
 
         Waypoint wp = (Waypoint)target;
-        if (GUILayout.Button("Build Object"))
+        if (GUILayout.Button("Build Waypoint"))
         {
             wp.NewWayPoint();
         }
