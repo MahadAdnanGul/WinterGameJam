@@ -87,6 +87,7 @@ public class PlayerController : MonoBehaviour
             buttonCount = 0;
         }
         rotate = joystick.Horizontal;
+        Debug.Log(rotate);
         Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
         if(!done)
         {
