@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 608621437490635529}
   - component: {fileID: 608621437490635531}
   - component: {fileID: 2427818836106932971}
+  - component: {fileID: 5226537944488047116}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -116,8 +117,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   turn_rate: 2
   attackButton: {fileID: 0}
+  joystick: {fileID: 0}
+  isComplete: 0
+  done: 0
   multiplier: 1
   Score: 1000
+  lastTouchedBonus: {fileID: 0}
 --- !u!136 &608621437490635531
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -153,8 +158,29 @@ MonoBehaviour:
   RocketPowerRate: 8
   FuelDepletionRate: 30
   attackButton: {fileID: 0}
-  multiplier: 1
-  Score: 1000
+  fuelCapacity: 100
+  fuelAmount: 100
+--- !u!114 &5226537944488047116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 608621437490635534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fd2f48ea2e9f945a0e58c311b76fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn_rate: 2
+  speed: 10
+  accel: 1
+  currentRocketPower: 1
+  defaultRocketPower: 1
+  maxRocketPower: 5
+  RocketPowerRate: 8
+  FuelDepletionRate: 30
+  attackButton: {fileID: 0}
   fuelCapacity: 100
   fuelAmount: 100
 --- !u!1 &608621438931108350
