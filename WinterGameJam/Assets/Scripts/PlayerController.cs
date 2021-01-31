@@ -5,6 +5,18 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    GameObject finishLine;
+    private float distanceFromFinish;
+
+    public bool fixedPosition;
+
+     public GameObject lose;
+    public GameObject win;
+
+    PlaceHolder placeHolder;
+
+    GameObject[] bots;
+    private float[] botsDistance;
 
     [SerializeField] private float turn_rate = 1;
     //[SerializeField] private float speed = 1;
@@ -29,6 +41,8 @@ public class PlayerController : MonoBehaviour
     float buttonReset = 0.2f;
     int buttonCount = 0;
 
+    public int place;
+
    
     private PlayerMovement movement;
     private float rotate;
@@ -39,7 +53,12 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        fixedPosition = false;
         isComplete = false;
+        bots = GameObject.FindGameObjectsWithTag("Bot");
+        finishLine = GameObject.FindGameObjectWithTag("Win");
+        botsDistance = new float[bots.Length];
+        placeHolder = GameObject.FindGameObjectWithTag("Place").GetComponent<PlaceHolder>();
         
         movement = GetComponent<PlayerMovement>();
     }
@@ -47,6 +66,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        place = 6;
+
        if (Input.GetMouseButtonDown(0))
         {
             buttonReset = 0.3f;
@@ -71,6 +92,26 @@ public class PlayerController : MonoBehaviour
         {
             movement.Move(quat);
         }
+
+        if(!fixedPosition)
+        {
+            distanceFromFinish = Vector3.Distance(transform.position, finishLine.GetComponent<Transform>().position);
+
+            for (int i = 0; i < bots.Length; i++)
+            {
+                botsDistance[i] = Vector3.Distance(finishLine.transform.position, bots[i].transform.position);
+            }
+            for (int i = 0; i < bots.Length; i++)
+            {
+                if (distanceFromFinish < botsDistance[i])
+                {
+                    place--;
+                }
+            }
+            placeHolder.SetPlace(place);
+        }
+        
+
         
 
         //rotate = Input.GetAxis("Horizontal");
@@ -138,7 +179,24 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 2f, gameObject.transform.position.z);
             gameObject.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
             done = true;
+            if(fixedPosition)
+            {
+                PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level",0)+1);
+                win.SetActive(true);
+            }
+            else
+            {
+                lose.SetActive(true);
+            }
         }
+        else
+        {
+            Time.timeScale = 0;
+            lose.SetActive(true);
+        }
+        
+            
+        
     }
 
 

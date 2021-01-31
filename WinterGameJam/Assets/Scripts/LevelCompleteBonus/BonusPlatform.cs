@@ -12,6 +12,17 @@ public class BonusPlatform : MonoBehaviour
         PlayerController controller = other.gameObject.GetComponent<PlayerController>();
         if (controller != null)
         {
+            if(multiplier==1)
+            {
+                if(controller.place==1)
+                {
+                    controller.fixedPosition = true;
+                }
+                else
+                {
+                    controller.OnDeath();
+                }
+            }
             if(controller.multiplier<=multiplier)
             {
                 controller.multiplier = multiplier;
@@ -22,6 +33,7 @@ public class BonusPlatform : MonoBehaviour
             {
                 controller.OnDeath();
             }
+            
             
         }
 

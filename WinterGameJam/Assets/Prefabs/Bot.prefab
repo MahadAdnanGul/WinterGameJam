@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn_rate: 10
-  speed: 9
+  speed: 10
   accel: 1
   currentRocketPower: 1
   defaultRocketPower: 1
