@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7318869797258357594}
   - component: {fileID: 7318869797258357593}
   - component: {fileID: 1287957216498095651}
+  - component: {fileID: 4491315259735095672}
   m_Layer: 0
   m_Name: Bot
-  m_TagString: Untagged
+  m_TagString: Bot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 16c72859ed091be46b7113f4c96c6fd0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -105,7 +106,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7318869797258357596}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f44bd4fb6bbca04baf100eed3c4333f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5000001
@@ -125,13 +126,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waypoint: {fileID: 0}
-  turn_rate: 3
-  speed: 5
+  cheat_probability: 0.5
+--- !u!114 &4491315259735095672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318869797258357596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23fd2f48ea2e9f945a0e58c311b76fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turn_rate: 10
+  speed: 9
+  accel: 1
   currentRocketPower: 1
   defaultRocketPower: 1
-  maxRocketPower: 3
-  RocketPowerRate: 4
+  maxRocketPower: 5
+  RocketPowerRate: 8
   FuelDepletionRate: 30
-  replenishAmount: 2
-  fuelCapacity: 100
-  fuelAmount: 100
+  attackButton: {fileID: 0}
+  fuelCapacity: 1000
+  fuelAmount: 1000

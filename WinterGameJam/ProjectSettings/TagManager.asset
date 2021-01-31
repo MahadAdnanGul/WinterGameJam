@@ -14,6 +14,7 @@ TagManager:
   - x8
   - x10
   - x1
+  - Bot
   layers:
   - Default
   - TransparentFX
