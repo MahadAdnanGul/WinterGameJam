@@ -23,12 +23,15 @@ public class Waypoint : MonoBehaviour
         {
             Debug.DrawLine(transform.position, next.transform.position, Color.blue);
         }
-        
+        if (shortcut)
+        {
+            Debug.DrawLine(transform.position, shortcut.transform.position, Color.red);
+        }
+
     }
 
     public void NewWayPoint()
     {
-        print("NOT DONE YET");
         Waypoint wp = Instantiate(prefab, transform.position + transform.forward, Quaternion.identity, transform.parent);
         wp.name = gameObject.name;
         next = wp;

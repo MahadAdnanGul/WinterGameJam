@@ -30,6 +30,7 @@ public class BotController : MonoBehaviour
     {
         if (!waypoint)
             return;
+            
 
 
         Vector3 direction = (waypoint.transform.position - transform.position).normalized;
@@ -70,6 +71,10 @@ public class BotController : MonoBehaviour
             else
             {
                 waypoint = waypoint.next;
+                if (!waypoint)
+                {
+                    rb.drag = 3;
+                }
             }
             
         }
