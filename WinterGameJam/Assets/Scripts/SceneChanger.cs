@@ -13,7 +13,8 @@ public class SceneChanger : MonoBehaviour
 
     public void MainScene()
     {
-        SceneManager.LoadScene(1);
+        Time.timeScale = 1;
+        SceneManager.LoadScene(PlayerPrefs.GetInt("Level",1));
     }
 
 }

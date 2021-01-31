@@ -15,6 +15,9 @@ TagManager:
   - x10
   - x1
   - Bot
+  - Win
+  - Place
+  - LoseScreen
   layers:
   - Default
   - TransparentFX
