@@ -13,7 +13,7 @@ public class Waypoint : MonoBehaviour
     [SerializeField] Waypoint prefab = null;
 
 
-    void OnDrawGizmos()
+    /*void OnDrawGizmos()
     {
         // Draw a yellow sphere at the transform's position
         Gizmos.color = Color.green;
@@ -28,19 +28,19 @@ public class Waypoint : MonoBehaviour
             Debug.DrawLine(transform.position, shortcut.transform.position, Color.red);
         }
 
-    }
+    }*/
 
     public void NewWayPoint()
     {
         Waypoint wp = Instantiate(prefab, transform.position + transform.forward, Quaternion.identity, transform.parent);
         wp.name = gameObject.name;
         next = wp;
-        Selection.SetActiveObjectWithContext(wp, this);
+       // Selection.SetActiveObjectWithContext(wp, this);
     }
 
 }
 
-[CustomEditor(typeof(Waypoint))]
+/*[CustomEditor(typeof(Waypoint))]
 public class SomeScriptEditor : Editor
 {
     public override void OnInspectorGUI()
@@ -53,4 +53,4 @@ public class SomeScriptEditor : Editor
             wp.NewWayPoint();
         }
     }
-}
+}*/

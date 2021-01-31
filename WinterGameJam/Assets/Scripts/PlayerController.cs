@@ -46,13 +46,21 @@ public class PlayerController : MonoBehaviour
    
     private PlayerMovement movement;
     private float rotate;
+    float groundDistance = 2f;
+    public LayerMask groundMask;
+    bool isGrounded;
     //private bool disabled = false;
     //private float disableTimer = 0f;
+    [SerializeField] Animator playerAnim;
+
+    AudioSource jet;
+    float times = 0;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        jet = GetComponent<AudioSource>();
         fixedPosition = false;
         isComplete = false;
         bots = GameObject.FindGameObjectsWithTag("Bot");
@@ -66,8 +74,18 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        isGrounded = Physics.CheckSphere(transform.position, groundDistance, groundMask);
         place = 6;
 
+        if(!isGrounded)
+        {
+            playerAnim.SetBool("Air", true);
+        }
+        else
+        {
+            playerAnim.SetBool("Air", false);
+        }
        if (Input.GetMouseButtonDown(0))
         {
             buttonReset = 0.3f;
@@ -75,7 +93,9 @@ public class PlayerController : MonoBehaviour
         }
         else if (buttonReset > 0 && buttonCount == 2 && Input.GetMouseButton(0))
         {
-            movement.Rocket();
+            movement.ForceRocket();
+           
+            
         }
 
         else if(buttonReset>0)
@@ -85,6 +105,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             buttonCount = 0;
+            jet.Stop();
         }
         rotate = joystick.Horizontal;
         Debug.Log(rotate);
@@ -184,16 +205,20 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerPrefs.SetInt("Level", PlayerPrefs.GetInt("Level",0)+1);
                 win.SetActive(true);
+                FindObjectOfType<SoundManager>().PlayWinSound();
             }
             else
             {
                 lose.SetActive(true);
+                FindObjectOfType<SoundManager>().PlayLoseSound();
             }
         }
         else
         {
+            FindObjectOfType<SoundManager>().PlayLoseSound();
             Time.timeScale = 0;
             lose.SetActive(true);
+            
         }
         
             
@@ -209,6 +234,7 @@ public class PlayerController : MonoBehaviour
             if (attackButton.interactable == false)
             {
                 attackButton.interactable = true;
+                FindObjectOfType<SoundManager>().PlayAttackPickup();
                 Destroy(other.gameObject);
             }
 

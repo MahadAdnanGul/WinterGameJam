@@ -90,12 +90,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void forceRocket()
+    public void ForceRocket()
     {
         if (fuelAmount > 0)
         {
             //rb.velocity = new Vector3(rb.velocity.x, currentRocketPower, rb.velocity.z);
+            
             rb.AddForce(new Vector3(0, currentRocketPower, 0), ForceMode.Acceleration);
+            if(rb.velocity.y>maxRocketPower/4)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, maxRocketPower/4, rb.velocity.z);
+            }
             fuelAmount -= FuelDepletionRate * Time.deltaTime;
             if (currentRocketPower <= maxRocketPower)
             {
@@ -122,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (gameObject.tag == "Player")
         {
+            FindObjectOfType<SoundManager>().PlayPush();
             disabled = true;
             disableTimer = duration;
             rb.AddRelativeForce(force * -Vector3.forward, ForceMode.Acceleration);
