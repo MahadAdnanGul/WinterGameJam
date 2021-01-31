@@ -107,13 +107,8 @@ public class PlayerController : MonoBehaviour
             buttonCount = 0;
             jet.Stop();
         }
-        rotate = joystick.Horizontal;
-        Debug.Log(rotate);
-        Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
-        if(!done)
-        {
-            movement.Move(quat);
-        }
+        
+        
 
         if(!fixedPosition)
         {
@@ -190,6 +185,17 @@ public class PlayerController : MonoBehaviour
 
         //}
 
+
+    }
+    private void FixedUpdate()
+    {
+        rotate = joystick.Horizontal;
+       // Debug.Log(rotate);
+        Quaternion quat = Quaternion.Euler(0, transform.rotation.eulerAngles.y + rotate * turn_rate, 0);
+        if (!done)
+        {
+            movement.Move(quat);
+        }
 
     }
 

@@ -270,7 +270,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608621437490635534}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 7f44bd4fb6bbca04baf100eed3c4333f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5
@@ -1690,8 +1690,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7848760890535875000}
   - component: {fileID: 4182800232928725954}
-  - component: {fileID: 1732692603880750629}
-  - component: {fileID: 5323322179363102949}
   m_Layer: 0
   m_Name: character_model_03
   m_TagString: Untagged
@@ -1734,33 +1732,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!136 &1732692603880750629
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7469139574265924354}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.5
-  m_Height: 2.25
-  m_Direction: 1
-  m_Center: {x: 0, y: 1.57, z: 0}
---- !u!65 &5323322179363102949
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7469139574265924354}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.76, z: 0.51}
-  m_Center: {x: 0, y: 0.36, z: 0.03}
 --- !u!1 &8144605919328530741
 GameObject:
   m_ObjectHideFlags: 0
